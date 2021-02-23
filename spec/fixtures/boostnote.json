@@ -1,0 +1,15 @@
+{
+  "folders": [
+    {
+      "key": "fa82cb4c1f62f292f508",
+      "color": "#30D5C8",
+      "name": "Folder Foo"
+    },
+    {
+      "key": "ab82cb4c1f62f292f512",
+      "color": "#30D5C8",
+      "name": "Folder Bar"
+    }
+  ],
+  "version": "1.0"
+}
