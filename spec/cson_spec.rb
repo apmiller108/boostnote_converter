@@ -35,4 +35,35 @@ RSpec.describe CSON do
       expect(subject.folder).to eq boostnote_json['folders'][0]['name']
     end
   end
+
+  describe '#tags' do
+    it 'returns a list of tags' do
+      expect(subject.tags).to eq(%w[tag1 tag2])
+    end
+  end
+
+  describe '#content' do
+    it 'returns the note content section' do
+      expected_content = File.read('spec/fixtures/notes/example_note_content.txt')
+      expect(subject.content).to eq expected_content
+    end
+  end
+
+  describe '#lines_highlighted' do
+    it 'returns a list of line numbers' do
+      expect(subject.lines_highlighted).to eq([150])
+    end
+  end
+
+  describe '#starred?' do
+    it 'returns the isStarred bool' do
+      expect(subject.starred?).to be false
+    end
+  end
+
+  describe '#trashed?' do
+    it 'returns the isTrashed bool' do
+      expect(subject.trashed?).to be true
+    end
+  end
 end

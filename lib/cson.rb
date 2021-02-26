@@ -6,10 +6,15 @@ class CSON
   attr_reader :contents, :file
 
   PATTERNS = {
-    created_at: 'createdAt:\s\"(?<created_at>.+)\"\n',
-    updated_at: 'updatedAt:\s\"(?<updated_at>.+)\"\n',
-    type:       'type:\s\"(?<type>.+)\"\n',
-    folder_key: 'folder:\s\"(?<folder_key>.+)\"\n'
+    created_at:        /^createdAt:\s\"(?<created_at>.+)\"$/,
+    updated_at:        /^updatedAt:\s\"(?<updated_at>.+)\"$/,
+    type:              /^type:\s\"(?<type>.+)\"$/,
+    folder_key:        /^folder:\s\"(?<folder_key>.+)\"$/,
+    tags:              /^tags:\s(?<tags>\[.[^\]]+\])$/m,
+    content:           /^content:\s'''\n(?<content>.+)^'''/m,
+    lines_highlighted: /^linesHighlighted:\s(?<lines_highlighted>\[.[^\]]+\])$/m,
+    starred:           /^isStarred:\s(?<starred>.+)$/,
+    trashed:           /^isTrashed:\s(?<trashed>.+)$/
   }.freeze
 
   def initialize(file)
@@ -33,6 +38,26 @@ class CSON
     folder_data['name']
   end
 
+  def tags
+    JSON(document_map[:tags])
+  end
+
+  def content
+    document_map[:content]
+  end
+
+  def lines_highlighted
+    JSON(document_map[:lines_highlighted])
+  end
+
+  def starred?
+    document_map[:starred] == 'true'
+  end
+
+  def trashed?
+    document_map[:trashed] == 'true'
+  end
+
   private
 
   def document_map
@@ -42,7 +67,7 @@ class CSON
   end
 
   def boostnote_json
-    @boostnote_json = JSON.parse(
+    @boostnote_json = JSON(
       File.read(file_pathname.dirname.parent.join('boostnote.json'))
     )
   end

@@ -1,13 +1,3 @@
-createdAt: "2020-11-30T18:33:07.781Z"
-updatedAt: "2021-02-19T16:19:59.940Z"
-type: "MARKDOWN_NOTE"
-folder: "fa82cb4c1f62f292f508"
-title: "Test Cson"
-tags: [
-  "tag1",
-  "tag2"
-]
-content: '''
   # HEADING 1
   
   ## HEADING 2
@@ -46,9 +36,3 @@ content: '''
   | B4QK7V7G | 24166313 |
   | BWMRXRBB | 24406745 |
   
-'''
-linesHighlighted: [
-  150
-]
-isStarred: false
-isTrashed: true
