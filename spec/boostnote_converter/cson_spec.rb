@@ -1,4 +1,4 @@
-require 'cson'
+# frozen_string_literal: true
 
 RSpec.describe CSON do
   let(:note_path) { 'spec/fixtures/notes/example_note.cson' }
