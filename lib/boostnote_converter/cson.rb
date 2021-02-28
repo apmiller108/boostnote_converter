@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'date'
 require 'pathname'
 require 'json'
@@ -6,15 +8,15 @@ class CSON
   attr_reader :contents, :file
 
   PATTERNS = {
-    created_at:        /^createdAt:\s\"(?<created_at>.+)\"$/,
-    updated_at:        /^updatedAt:\s\"(?<updated_at>.+)\"$/,
-    type:              /^type:\s\"(?<type>.+)\"$/,
-    folder_key:        /^folder:\s\"(?<folder_key>.+)\"$/,
-    tags:              /^tags:\s(?<tags>\[.[^\]]+\])$/m,
-    content:           /^content:\s'''\n(?<content>.+)^'''/m,
+    created_at: /^createdAt:\s\"(?<created_at>.+)\"$/,
+    updated_at: /^updatedAt:\s\"(?<updated_at>.+)\"$/,
+    type: /^type:\s\"(?<type>.+)\"$/,
+    folder_key: /^folder:\s\"(?<folder_key>.+)\"$/,
+    tags: /^tags:\s(?<tags>\[.[^\]]+\])$/m,
+    content: /^content:\s'''\n(?<content>.+)^'''/m,
     lines_highlighted: /^linesHighlighted:\s(?<lines_highlighted>\[.[^\]]+\])$/m,
-    starred:           /^isStarred:\s(?<starred>.+)$/,
-    trashed:           /^isTrashed:\s(?<trashed>.+)$/
+    starred: /^isStarred:\s(?<starred>.+)$/,
+    trashed: /^isTrashed:\s(?<trashed>.+)$/
   }.freeze
 
   def initialize(file)
@@ -43,7 +45,7 @@ class CSON
   end
 
   def content
-    document_map[:content]
+    document_map[:content].gsub(/^[ \t]{2}/, '')
   end
 
   def lines_highlighted
