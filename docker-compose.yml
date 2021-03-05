@@ -1,14 +1,16 @@
 version: "3.6"
 
 services:
-  # run it with: `docker-compose run --rm ruby`
+  # run it with: `docker-compose run --rm --service-ports ruby`
   ruby:
     command: /bin/bash
     build: .
     volumes:
-      - ${PWD}:/${PWD}:cached
+      - ${PWD}:/app:cached
       - ~/Google Drive/boostnotes:${PWD}/notes
+    ports:
+      - "12345:12345"
     environment:
       # Add environment variables
       LANG: C.UTF-8
-    working_dir: ${PWD}
+    working_dir: /app
