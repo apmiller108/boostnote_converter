@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
-require_relative "lib/boostnote_converter/version"
-
 Gem::Specification.new do |spec|
   spec.name          = "boostnote_converter"
-  spec.version       = BoostnoteConverter::VERSION
+  spec.version       = '0.1.0'
   spec.authors       = ["Alex Miller"]
   spec.email         = ["apmiller108@yahoo.com"]
 
