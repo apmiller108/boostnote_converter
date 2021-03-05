@@ -5,17 +5,25 @@
 ### HEADING 3
 
 @startuml
-  Alice -> Bobby: synchronous call
-  Alice ->> Bobby: asynchronous call
+
+Alice -> Bobby: synchronous call
+Alice ->> Bobby: asynchronous call
+
 @enduml
 
+@startuml
+
+Bobby -> Alice: synchronous call
+Bobby ->> Alice: asynchronous call
+
+@enduml
 
 - BULLET 1
 - BULLET 2
 - BULLET 3
 
 - [ ] CHECKBOX 1
-- [ ] NESTED CHECKBOX 1
+  - [ ] NESTED CHECKBOX 1
 - [x] CHECKBOX 2
 
 ```ruby
@@ -35,4 +43,6 @@
 | BAKG4W9U | 24021117 |
 | B4QK7V7G | 24166313 |
 | BWMRXRBB | 24406745 |
+
+![image1.png](:storage/aae882e4-03a3-43d5-83c3-4612fe16c743/4a8047fa.png)
 

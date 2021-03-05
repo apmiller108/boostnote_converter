@@ -44,7 +44,7 @@ RSpec.describe CSON do
 
   describe '#content' do
     it 'returns the note content section' do
-      expected_content = File.read('spec/fixtures/notes/example_note_content.txt')
+      expected_content = File.read('spec/fixtures/notes/example_note_content.md')
       expect(subject.content).to eq expected_content
     end
   end

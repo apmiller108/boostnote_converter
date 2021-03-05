@@ -15,17 +15,25 @@ content: '''
   ### HEADING 3
   
   @startuml
-    Alice -> Bobby: synchronous call
-    Alice ->> Bobby: asynchronous call
+
+  Alice -> Bobby: synchronous call
+  Alice ->> Bobby: asynchronous call
+  
   @enduml
 
+  @startuml
+
+  Bobby -> Alice: synchronous call
+  Bobby ->> Alice: asynchronous call
+  
+  @enduml
 
   - BULLET 1
   - BULLET 2
   - BULLET 3
 
   - [ ] CHECKBOX 1
-  - [ ] NESTED CHECKBOX 1
+    - [ ] NESTED CHECKBOX 1
   - [x] CHECKBOX 2
 
   ```ruby
