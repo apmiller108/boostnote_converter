@@ -39,13 +39,42 @@ RSpec.describe OrgNoteContent do
   end
 
   describe 'prepare_for_conversion' do
-    it 'maps the plantuml blocks to tags' do
-      subject.prepare_for_conversion
-      expect(subject.plantumls).to eq({ "uml_tag#{uuid1}" => uml1,
-                                        "uml_tag#{uuid2}" => uml2 })
+    let(:start_src_tag1) { described_class::BEGIN_SRC % uuid1 }
+    let(:start_src_tag2) { described_class::BEGIN_SRC % uuid2 }
+    let(:end_src_tag) { described_class::END_SRC }
+    let(:end_src_tag1_offset) do
+      start_src_tag1.length - described_class::START_UML.length
+    end
+    let(:start_src_tag2_offset) do
+      end_src_tag1_offset + end_src_tag.length - described_class::END_UML.length
+    end
+    let(:end_src_tag2_offset) do
+      start_src_tag2_offset + start_src_tag2.length - described_class::START_UML.length
     end
 
-    xit 'tags the location of the plantuml blocks' do
+    it 'converts the startuml tags to org begin_src' do
+      startuml1_index = markdown.index(described_class::START_UML)
+      startuml2_index = markdown.index(described_class::START_UML, startuml1_index + 1)
+
+      subject.prepare_for_conversion
+
+      expect(subject.markdown.index(start_src_tag1)).to eq startuml1_index
+      expect(subject.markdown.index(start_src_tag2)).to(
+        eq(startuml2_index + start_src_tag2_offset)
+      )
+    end
+
+    it 'converts the enduml to org end_src' do
+      enduml1_index = markdown.index('@enduml')
+      enduml2_index = markdown.index('@enduml', enduml1_index + 1)
+
+      subject.prepare_for_conversion
+
+      end_src1_index = subject.markdown.index(end_src_tag)
+      end_src2_index = subject.markdown.index(end_src_tag, end_src1_index + 1)
+
+      expect(end_src1_index).to eq(enduml1_index + end_src_tag1_offset)
+      expect(end_src2_index).to eq(enduml2_index + end_src_tag2_offset)
     end
   end
 end
