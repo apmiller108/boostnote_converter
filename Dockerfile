@@ -1,5 +1,8 @@
 FROM ruby:3.0.0
 
+RUN wget "https://github.com/jgm/pandoc/releases/download/2.12/pandoc-2.12-1-amd64.deb" \
+      && dpkg -i "pandoc-2.12-1-amd64.deb"
+
 # throw errors if Gemfile has been modified since Gemfile.lock
 RUN bundle config --global frozen 1
 
