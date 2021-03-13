@@ -66,4 +66,10 @@ RSpec.describe CSON do
       expect(subject.trashed?).to be true
     end
   end
+
+  describe 'name' do
+    it 'returns the file basename' do
+      expect(subject.name).to eq 'example_note'
+    end
+  end
 end

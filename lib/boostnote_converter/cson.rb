@@ -60,6 +60,10 @@ class CSON
     document_map[:trashed] == 'true'
   end
 
+  def name
+    file_pathname.basename.to_s.gsub(/\.cson$/, '')
+  end
+
   private
 
   def document_map
