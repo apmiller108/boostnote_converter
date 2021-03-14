@@ -1,0 +1,53 @@
+* HEADING 1
+  :PROPERTIES:
+  :CUSTOM_ID: heading-1
+  :END:
+** HEADING 2
+   :PROPERTIES:
+   :CUSTOM_ID: heading-2
+   :END:
+*** HEADING 3
+    :PROPERTIES:
+    :CUSTOM_ID: heading-3
+    :END:
+#+begin_src plantuml :file d2735476-8999-4138-9479-e4c0ed8619be.png
+
+Alice -> Bobby: synchronous call Alice ->> Bobby: asynchronous call
+
+#+end_src
+
+#+begin_src plantuml :file 4cca184a-1243-4ec9-851f-ca9dbdb31912.png
+
+Bobby -> Alice: synchronous call Bobby ->> Alice: asynchronous call
+
+#+end_src
+
+- BULLET 1
+- BULLET 2
+- BULLET 3
+
+- [ ] CHECKBOX 1
+
+  - [ ] NESTED CHECKBOX 1
+
+- [X] CHECKBOX 2
+
+#+begin_src ruby
+    module Commentable   
+      def self.included(base)     
+        base.class_eval do       
+          has_many :comments, as: :commentable     
+        end   
+      end
+    end
+#+end_src
+
+[[https://example.com][LINK 1]]
+
+| KEY      | id       |
+|----------+----------|
+| BAKG4W9U | 24021117 |
+| B4QK7V7G | 24166313 |
+| BWMRXRBB | 24406745 |
+
+[[:storage/aae882e4-03a3-43d5-83c3-4612fe16c743/4a8047fa.png]]

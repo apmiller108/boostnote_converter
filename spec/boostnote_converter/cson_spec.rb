@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe CSON do
+RSpec.describe BoostnoteConverter::CSON do
   let(:note_path) { 'spec/fixtures/notes/example_note.cson' }
   let(:boostnote_json) { JSON.parse(File.read('spec/fixtures/boostnote.json')) }
 
