@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'securerandom'
 require 'tempfile'
 require 'English'
 
@@ -21,14 +20,14 @@ module BoostnoteConverter
       @content ||= Tempfile.create(cson.name) do |file|
         file.write(cson.content)
         file.rewind
+        # TODO: consider running this in a separate thread/fiber
         org_content = `pandoc -f gfm -t org #{file.path}`
 
         # TODO: Raise error on fail
         puts $CHILD_STATUS.success? # Process::Status object
 
-        # TODO: add title to file
-        org_content.gsub(%r{#{START_UML}|#{END_UML}}) do |tag|
-          tag == START_UML ? BEGIN_SRC % SecureRandom.uuid : END_SRC
+        org_content.gsub(%r{#{START_UML}|#{END_UML}}).with_index do |tag, index|
+          tag == START_UML ? BEGIN_SRC % "#{cson.name}-#{index}" : END_SRC
         end
       end
     end

@@ -10,13 +10,13 @@
     :PROPERTIES:
     :CUSTOM_ID: heading-3
     :END:
-#+begin_src plantuml :file d2735476-8999-4138-9479-e4c0ed8619be.png
+#+begin_src plantuml :file 86d499e8-dc80-4a20-87d8-adc5d73fb163-0.png
 
 Alice -> Bobby: synchronous call Alice ->> Bobby: asynchronous call
 
 #+end_src
 
-#+begin_src plantuml :file 4cca184a-1243-4ec9-851f-ca9dbdb31912.png
+#+begin_src plantuml :file 86d499e8-dc80-4a20-87d8-adc5d73fb163-2.png
 
 Bobby -> Alice: synchronous call Bobby ->> Alice: asynchronous call
 
