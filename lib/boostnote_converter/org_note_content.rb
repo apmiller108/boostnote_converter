@@ -23,8 +23,7 @@ module BoostnoteConverter
         # TODO: consider running this in a separate thread/fiber
         org_content = `pandoc -f gfm -t org #{file.path}`
 
-        # TODO: Raise error on fail
-        puts $CHILD_STATUS.success? # Process::Status object
+        raise ContentConversionFailedError unless $CHILD_STATUS.success?
 
         org_content.gsub(%r{#{START_UML}|#{END_UML}}).with_index do |tag, index|
           tag == START_UML ? BEGIN_SRC % "#{cson.name}-#{index}" : END_SRC
