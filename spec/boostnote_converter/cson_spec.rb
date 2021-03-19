@@ -2,9 +2,10 @@
 
 RSpec.describe BoostnoteConverter::CSON do
   let(:note_path) { 'spec/fixtures/notes/example_note.cson' }
+  let(:note) { File.new(note_path) }
   let(:boostnote_json) { JSON.parse(File.read('spec/fixtures/boostnote.json')) }
 
-  subject { described_class.new(File.new(note_path)) }
+  subject { described_class.new(note) }
 
   describe '#initialize' do
     it 'sets the context of the file' do
@@ -70,6 +71,13 @@ RSpec.describe BoostnoteConverter::CSON do
   describe 'name' do
     it 'returns the file basename' do
       expect(subject.name).to eq 'example_note'
+    end
+  end
+
+  describe 'storage_path' do
+    it 'returns the path to the attachments directory' do
+      expected_path = File.absolute_path(note.path).gsub(File.basename(note.path), 'attachments')
+      expect(subject.storage_path).to eq expected_path
     end
   end
 end

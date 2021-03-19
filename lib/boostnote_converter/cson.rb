@@ -65,6 +65,10 @@ module BoostnoteConverter
       file_pathname.basename.to_s.gsub(/\.cson$/, '')
     end
 
+    def storage_path
+      (file_pathname.parent + 'attachments').to_s
+    end
+
     private
 
     def document_map
@@ -80,7 +84,7 @@ module BoostnoteConverter
     end
 
     def file_pathname
-      Pathname.new(file.path)
+      Pathname.new(file.path).realpath
     end
 
     def folder_key

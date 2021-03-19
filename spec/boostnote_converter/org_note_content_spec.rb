@@ -2,7 +2,7 @@
 
 RSpec.describe BoostnoteConverter::OrgNoteContent do
   let(:cson_content) { File.read('spec/fixtures/notes/example_note_content.md') }
-  let(:cson_name) { '86d499e8-dc80-4a20-87d8-adc5d73fb163' }
+  let(:cson_name) { 'example_note' }
   let(:cson) { instance_double(BoostnoteConverter::CSON, content: cson_content, name: cson_name) }
 
   let(:org_converted_content) { File.read('spec/fixtures/notes/org_converted_content') }
@@ -23,7 +23,7 @@ RSpec.describe BoostnoteConverter::OrgNoteContent do
         allow(file).to receive(:rewind)
       end
 
-      it 'raises an erro' do
+      it 'raises an error' do
         expect { subject.content }.to raise_error BoostnoteConverter::ContentConversionFailedError
       end
     end

@@ -10,13 +10,13 @@
     :PROPERTIES:
     :CUSTOM_ID: heading-3
     :END:
-#+begin_src plantuml :file 86d499e8-dc80-4a20-87d8-adc5d73fb163-0.png
+#+begin_src plantuml :file example_note-0.png
 
 Alice -> Bobby: synchronous call Alice ->> Bobby: asynchronous call
 
 #+end_src
 
-#+begin_src plantuml :file 86d499e8-dc80-4a20-87d8-adc5d73fb163-2.png
+#+begin_src plantuml :file example_note-2.png
 
 Bobby -> Alice: synchronous call Bobby ->> Alice: asynchronous call
 
@@ -50,4 +50,4 @@ Bobby -> Alice: synchronous call Bobby ->> Alice: asynchronous call
 | B4QK7V7G | 24166313 |
 | BWMRXRBB | 24406745 |
 
-[[:storage/aae882e4-03a3-43d5-83c3-4612fe16c743/4a8047fa.png]]
+[[file:attachments/4a8047fa.png]]
