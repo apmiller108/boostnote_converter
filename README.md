@@ -1,3 +1,5 @@
+[![Test](https://github.com/apmiller108/boostnote_converter/actions/workflows/test.yml/badge.svg)](https://github.com/apmiller108/boostnote_converter/actions/workflows/test.yml)
+
 # BoostnoteConverter
 
 ## Installation
