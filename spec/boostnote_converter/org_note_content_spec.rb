@@ -20,7 +20,7 @@ RSpec.describe BoostnoteConverter::OrgNoteContent do
       expected_attachment_path = "#{attachments_dir}/#{attachment_name}"
       subject.content
       expect(File.exist?(expected_attachment_path))
-      FileUtils.rm(expected_attachment_path)
+      FileUtils.rm(expected_attachment_path) unless ENV['GH_ACTIONS']
     end
 
     context 'when the call to pandoc fails' do

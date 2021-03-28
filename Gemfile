@@ -2,8 +2,6 @@
 
 source 'https://rubygems.org'
 
-ruby '3.0.0'
-
 gemspec
 
 gem 'rake', '~> 13.0'
