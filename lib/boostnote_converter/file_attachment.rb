@@ -3,11 +3,15 @@
 class FileAttachment
   ATTACHMENT_NAME_PATTERN = %r{^\[\[file:attachments\/(?<file_name>.+)\]\]}.freeze
 
-  attr_reader :org_content, :note_name, :source_dir, :target_dir
+  def self.convert(...)
+    new(...).convert
+  end
 
-  def initialize(org_content, note_name, source_dir, target_dir)
+  attr_reader :org_content, :document_name, :source_dir, :target_dir
+
+  def initialize(org_content, document_name, source_dir, target_dir)
     @org_content = org_content
-    @note_name = note_name
+    @document_name = document_name
     @source_dir = source_dir
     @target_dir = target_dir
   end
@@ -21,7 +25,7 @@ class FileAttachment
   private
 
   def add_org_file_links
-    org_content.gsub!(":storage/#{note_name}", 'file:attachments')
+    org_content.gsub!(":storage/#{document_name}", 'file:attachments')
   end
 
   def copy_attachments

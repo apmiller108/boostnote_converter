@@ -33,7 +33,7 @@ RSpec.describe BoostnoteConverter::OrgNoteContent do
       end
 
       it 'raises an error' do
-        expect { subject.content }.to raise_error BoostnoteConverter::ContentConversionFailedError
+        expect { subject.content }.to raise_error BoostnoteConverter::Pandoc::ContentConversionFailedError
       end
     end
   end

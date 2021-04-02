@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 module BoostnoteConverter
-  class ContentConversionFailedError < StandardError
+  class Pandoc
+    class ContentConversionFailedError < StandardError; end
   end
 end
