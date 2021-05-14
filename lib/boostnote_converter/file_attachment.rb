@@ -25,7 +25,11 @@ class FileAttachment
   private
 
   def add_org_file_links
-    org_content.gsub!(":storage/#{document_name}", 'file:attachments')
+    org_content.gsub!(":storage/#{document_name}", "file:#{attachments_folder}")
+  end
+
+  def attachments_folder
+    Pathname.new(target_dir).split.last.to_s
   end
 
   def copy_attachments
@@ -37,8 +41,12 @@ class FileAttachment
 
   def attachment_paths
     @attachment_paths ||= org_content.lines.each_with_object([]) do |line, path_list|
-      match = line.match(ATTACHMENT_NAME_PATTERN)
+      match = line.match(attachment_name_pattern)
       path_list << Pathname.new(source_dir) + match[:file_name] if match
     end
+  end
+
+  def attachment_name_pattern
+    %r{^\[\[file:#{attachments_folder}\/(?<file_name>.+)\]\]}.freeze
   end
 end
