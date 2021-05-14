@@ -11,6 +11,7 @@ module BoostnoteConverter
     PATTERNS = {
       created_at: /^createdAt:\s\"(?<created_at>.+)\"$/,
       updated_at: /^updatedAt:\s\"(?<updated_at>.+)\"$/,
+      title: /^title:\s\"(?<title>.+)\"/,
       type: /^type:\s\"(?<type>.+)\"$/,
       folder_key: /^folder:\s\"(?<folder_key>.+)\"$/,
       tags: /^tags:\s(?<tags>\[.[^\]]+\])$/m,
@@ -63,6 +64,10 @@ module BoostnoteConverter
 
     def name
       file_pathname.basename.to_s.gsub(/\.cson$/, '')
+    end
+
+    def title
+      document_map[:title]
     end
 
     def storage_path

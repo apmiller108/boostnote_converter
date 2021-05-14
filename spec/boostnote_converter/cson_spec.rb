@@ -80,4 +80,10 @@ RSpec.describe BoostnoteConverter::CSON do
       expect(subject.storage_path).to eq expected_path
     end
   end
+
+  describe 'title' do
+    it 'returns the title property' do
+      expect(subject.title).to eq 'Test Cson'
+    end
+  end
 end
