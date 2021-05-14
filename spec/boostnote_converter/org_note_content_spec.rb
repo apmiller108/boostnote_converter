@@ -2,10 +2,15 @@
 
 RSpec.describe BoostnoteConverter::OrgNoteContent do
   let(:cson_content) { File.read('spec/fixtures/notes/example_note_content.md') }
-  let(:cson_name) { 'example_note' }
+  let(:cson_filename) { 'example_note' }
   let(:attachment_name) { '4a8047fa.png' }
-  let(:storage_path) { Pathname.new("spec/fixtures/attachments/#{cson_name}") }
-  let(:cson) { instance_double(BoostnoteConverter::CSON, content: cson_content, name: cson_name, storage_path: storage_path) }
+  let(:storage_path) { Pathname.new("spec/fixtures/attachments/#{cson_filename}") }
+  let(:cson) do
+    instance_double(
+      BoostnoteConverter::CSON,
+      content: cson_content, filename: cson_filename, storage_path: storage_path
+    )
+  end
   let(:org_converted_content) { File.read('spec/fixtures/notes/org_converted_content') }
   let(:attachments_dir) { "#{Pathname.new("spec").realpath}/attachments" }
 
@@ -27,7 +32,7 @@ RSpec.describe BoostnoteConverter::OrgNoteContent do
       let(:file) { instance_double(File, path: '/does/not/exist') }
 
       before do
-        allow(Tempfile).to receive(:create).with(cson_name).and_yield(file)
+        allow(Tempfile).to receive(:create).with(cson_filename).and_yield(file)
         allow(file).to receive(:write).with(cson_content)
         allow(file).to receive(:rewind)
       end

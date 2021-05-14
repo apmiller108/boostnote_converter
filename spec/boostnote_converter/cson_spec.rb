@@ -68,9 +68,9 @@ RSpec.describe BoostnoteConverter::CSON do
     end
   end
 
-  describe 'name' do
+  describe 'filename' do
     it 'returns the file basename' do
-      expect(subject.name).to eq 'example_note'
+      expect(subject.filename).to eq 'example_note'
     end
   end
 

@@ -18,7 +18,7 @@ module BoostnoteConverter
     end
 
     def convert
-      Tempfile.create(cson.name) do |file|
+      Tempfile.create(cson.filename) do |file|
         file.write(cson.content)
         file.rewind
         result = `#{CMD % { path: file.path }}`

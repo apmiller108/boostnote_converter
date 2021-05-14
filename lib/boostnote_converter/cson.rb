@@ -62,7 +62,7 @@ module BoostnoteConverter
       document_map[:trashed] == 'true'
     end
 
-    def name
+    def filename
       file_pathname.basename.to_s.gsub(/\.cson$/, '')
     end
 
