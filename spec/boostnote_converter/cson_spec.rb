@@ -68,20 +68,21 @@ RSpec.describe BoostnoteConverter::CSON do
     end
   end
 
-  describe 'filename' do
+  describe '#filename' do
     it 'returns the file basename' do
       expect(subject.filename).to eq 'example_note'
     end
   end
 
-  describe 'storage_path' do
+  describe '#storage_path' do
     it 'returns the path to the attachments directory' do
-      expected_path = File.absolute_path(note.path).gsub(File.basename(note.path), 'attachments')
-      expect(subject.storage_path).to eq expected_path
+      expected_path = Pathname.new(File.absolute_path(note.path)) +
+                      '../../attachments/example_note'
+      expect(subject.storage_path).to eq expected_path.to_s
     end
   end
 
-  describe 'title' do
+  describe '#title' do
     it 'returns the title property' do
       expect(subject.title).to eq 'Test Cson'
     end

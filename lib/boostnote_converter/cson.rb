@@ -71,7 +71,7 @@ module BoostnoteConverter
     end
 
     def storage_path
-      (file_pathname.parent + 'attachments').to_s
+      (file_pathname + '../..' + 'attachments' + filename).to_s
     end
 
     private
