@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe BoostnoteConverter::OrgNote do
+RSpec.describe BoostnoteConverter::Org do
   let(:note_path) { 'spec/fixtures/notes/example_note.cson' }
   let(:cson_file) { File.new(note_path) }
   let(:cson) { BoostnoteConverter::CSON.new(cson_file) }

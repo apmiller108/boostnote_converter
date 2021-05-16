@@ -1,12 +1,8 @@
 # frozen_string_literal: true
 
 require_relative 'boostnote_converter/cson'
-require_relative 'boostnote_converter/file_attachment'
 require_relative 'boostnote_converter/pandoc'
-require_relative 'boostnote_converter/plantuml'
-require_relative 'boostnote_converter/org_note'
-require_relative 'boostnote_converter/org_note_content'
-require_relative 'boostnote_converter/org_note_export_options'
+require_relative 'boostnote_converter/org'
 require_relative 'boostnote_converter/errors/content_conversion_failed_error'
 
 module BoostnoteConverter
@@ -16,7 +12,4 @@ module BoostnoteConverter
   # - attachments_dir: defaults to `target/attachments`
   def self.convert(source:, target:, **opts)
   end
-
-  # class OrgNote
-  # end
 end

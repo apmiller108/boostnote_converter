@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe BoostnoteConverter::OrgNoteExportOptions do
+RSpec.describe BoostnoteConverter::Org::ExportOptions do
   let(:cson) do
     instance_double(
       BoostnoteConverter::CSON,

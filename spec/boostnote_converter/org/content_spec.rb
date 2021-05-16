@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe BoostnoteConverter::OrgNoteContent do
+RSpec.describe BoostnoteConverter::Org::Content do
   let(:cson_content) { File.read('spec/fixtures/notes/example_note_content.md') }
   let(:cson_filename) { 'example_note' }
   let(:attachment_name) { '4a8047fa.png' }
