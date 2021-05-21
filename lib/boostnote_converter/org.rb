@@ -7,6 +7,10 @@ require_relative 'org/export_options'
 
 module BoostnoteConverter
   class Org
+    extend Forwardable
+
+    def_delegators :cson, :created_at, :title
+
     attr_reader :cson, :attachment_dir
 
     def initialize(cson, attachment_dir)
@@ -24,6 +28,20 @@ module BoostnoteConverter
 
     def content
       Org::Content.new(cson, attachment_dir).content
+    end
+
+    def filename
+      "#{timestamp}-#{title_for_filename}.org"
+    end
+
+    private
+
+    def timestamp
+      created_at.strftime('%Y%m%d%H%M%S')
+    end
+
+    def title_for_filename
+      title.downcase.gsub(' ', '_')
     end
   end
 end

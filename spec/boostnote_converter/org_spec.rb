@@ -21,13 +21,19 @@ RSpec.describe BoostnoteConverter::Org do
     described_class.new(cson, attachments_dir)
   end
 
-  after(:each) do
-    FileUtils.rm("#{attachments_dir}/#{attachment_name}") unless ENV['GH_ACTIONS']
-  end
-
   describe '#read' do
+    after(:each) do
+      FileUtils.rm("#{attachments_dir}/#{attachment_name}") unless ENV['GH_ACTIONS']
+    end
+
     it 'returns the org note content with export options' do
       expect(subject.read).to eq export_options + "\n" + org_converted_content
+    end
+  end
+
+  describe '#filename' do
+    it 'is formated %Y%m%d%H%M%S-note_title.org' do
+      expect(subject.filename).to eq '20201130183307-test_cson.org'
     end
   end
 end
