@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module BoostnoteConverter
- class Org
+  class Org
     class FileLink
       def self.convert(...)
         new(...).convert
