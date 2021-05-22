@@ -4,7 +4,7 @@ RSpec.describe BoostnoteConverter::Org do
   let(:note_path) { 'spec/fixtures/notes/example_note.cson' }
   let(:cson_file) { File.new(note_path) }
   let(:cson) { BoostnoteConverter::CSON.new(cson_file) }
-  let(:attachments_dir) { "#{Pathname.new("spec").realpath}/attachments" }
+  let(:attachments_dir) { Pathname.new("spec").realpath + 'attachments' }
   let(:attachment_name) { '4a8047fa.png' }
 
   let(:export_options) do
