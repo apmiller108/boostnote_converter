@@ -25,18 +25,16 @@ module BoostnoteConverter
       private
 
       def add_org_file_links
-        org_content.gsub!(":storage/#{document_name}", "file:#{attachments_folder}")
-      end
-
-      def attachments_folder
-        target_dir.split.last.to_s
+        org_content.gsub!(":storage/#{document_name}/", 'file:attachments/')
       end
 
       def copy_attachments
         return unless File.exist?(target_dir) && attachment_paths.any?
 
-        FileUtils.mkdir_p(target_dir)
-        FileUtils.cp(*attachment_paths, target_dir)
+        attachment_dir = target_dir + 'attachments'
+
+        FileUtils.mkdir_p(attachment_dir)
+        FileUtils.cp(*attachment_paths, attachment_dir)
       end
 
       def attachment_paths
@@ -47,7 +45,7 @@ module BoostnoteConverter
       end
 
       def file_link_name_pattern
-        %r{^\[\[file:#{attachments_folder}\/(?<file_name>.+)\]\]}.freeze
+        %r{^\[\[file:attachments\/(?<file_name>.+)\]\]}.freeze
       end
     end
   end

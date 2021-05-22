@@ -4,7 +4,7 @@ RSpec.describe BoostnoteConverter::Org do
   let(:note_path) { 'spec/fixtures/notes/example_note.cson' }
   let(:cson_file) { File.new(note_path) }
   let(:cson) { BoostnoteConverter::CSON.new(cson_file) }
-  let(:attachments_dir) { Pathname.new("spec").realpath + 'attachments' }
+  let(:output_path) { Pathname.new('spec').realpath + 'test_conversions' }
   let(:attachment_name) { '4a8047fa.png' }
 
   let(:export_options) do
@@ -18,12 +18,12 @@ RSpec.describe BoostnoteConverter::Org do
   let(:org_converted_content) { File.read('spec/fixtures/notes/org_converted_content') }
 
   subject do
-    described_class.new(cson, attachments_dir)
+    described_class.new(cson, output_path)
   end
 
   describe '#read' do
     after(:each) do
-      FileUtils.rm("#{attachments_dir}/#{attachment_name}") unless ENV['GH_ACTIONS']
+      FileUtils.rm("#{output_path}/attachments/#{attachment_name}") unless ENV['GH_ACTIONS']
     end
 
     it 'returns the org note content with export options' do

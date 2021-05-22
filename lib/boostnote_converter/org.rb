@@ -11,11 +11,11 @@ module BoostnoteConverter
 
     def_delegators :cson, :created_at, :title
 
-    attr_reader :cson, :attachment_dir
+    attr_reader :cson, :output_path
 
-    def initialize(cson, attachment_dir)
+    def initialize(cson, output_path)
       @cson = cson
-      @attachment_dir = attachment_dir
+      @output_path = output_path
     end
 
     def read
@@ -27,7 +27,7 @@ module BoostnoteConverter
     end
 
     def content
-      Org::Content.new(cson, attachment_dir).content
+      Org::Content.new(cson, output_path).content
     end
 
     def filename

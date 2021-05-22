@@ -13,7 +13,7 @@ module BoostnoteConverter
 
   # Usage: BoostnoteConverter.convert(source: 'spec/fixtures/notes/example_note.cson', target: :org, output_path: "/")
   def self.convert(source:, target:, **opts)
-    output_path = Pathname.new(opts.fetch(:output_path), Dir.pwd).realpath
+    output_path = Pathname.new(opts.fetch(:output_path, Dir.pwd)).realpath
     path = Pathname.new(source).realpath
     target_class = TARGETS[target]
 
@@ -23,10 +23,10 @@ module BoostnoteConverter
               [path]
             end
 
-    return unless cson.type == 'MARKDOWN_NOTE'
-
     paths.each do |p|
       cson = CSON.new(p)
+      next if cson.type != 'MARKDOWN_NOTE'
+
       target_document = target_class.new(cson, output_path)
       Writer.new(target_document, output_path).write
     end

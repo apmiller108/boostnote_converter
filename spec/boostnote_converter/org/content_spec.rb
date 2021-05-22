@@ -12,9 +12,9 @@ RSpec.describe BoostnoteConverter::Org::Content do
     )
   end
   let(:org_converted_content) { File.read('spec/fixtures/notes/org_converted_content') }
-  let(:attachments_dir) { Pathname.new('spec').realpath + 'attachments' }
+  let(:output_path) { Pathname.new('spec').realpath + 'test_conversions' }
 
-  subject { described_class.new(cson, attachments_dir) }
+  subject { described_class.new(cson, output_path) }
 
   describe 'content' do
     it 'converts the cson gfm content to org format' do
@@ -22,7 +22,7 @@ RSpec.describe BoostnoteConverter::Org::Content do
     end
 
     it 'copies the attachments' do
-      expected_attachment_path = attachments_dir + attachment_name
+      expected_attachment_path = output_path + 'attachments' + attachment_name
       subject.content
       expect(File.exist?(expected_attachment_path)).to be true
       FileUtils.rm(expected_attachment_path) unless ENV['GH_ACTIONS']

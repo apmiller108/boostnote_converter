@@ -9,17 +9,17 @@ module BoostnoteConverter
 
       def_delegators :cson, :filename, :storage_path
 
-      attr_reader :cson, :attachment_dir
+      attr_reader :cson, :output_path
 
-      def initialize(cson, attachment_dir)
+      def initialize(cson, output_path)
         @cson = cson
-        @attachment_dir = attachment_dir
+        @output_path = output_path
       end
 
       def content
         @content ||=
           Pandoc.convert(cson)
-                .then { |content| FileLink.convert(content, filename, storage_path, attachment_dir) }
+                .then { |content| FileLink.convert(content, filename, storage_path, output_path) }
                 .then { |content| Plantuml.convert_tags(content, filename) }
       end
     end
