@@ -1,11 +1,10 @@
 # frozen_string_literal: true
 
 RSpec.describe BoostnoteConverter::CSON do
-  let(:note_path) { 'spec/fixtures/notes/example_note.cson' }
-  let(:note) { File.new(note_path) }
+  let(:note_path) { Pathname.new('spec/fixtures/notes/example_note.cson').realpath }
   let(:boostnote_json) { JSON.parse(File.read('spec/fixtures/boostnote.json')) }
 
-  subject { described_class.new(note) }
+  subject { described_class.new(note_path) }
 
   describe '#initialize' do
     it 'sets the context of the file' do
@@ -76,9 +75,8 @@ RSpec.describe BoostnoteConverter::CSON do
 
   describe '#storage_path' do
     it 'returns the path to the attachments directory' do
-      expected_path = Pathname.new(File.absolute_path(note.path)) +
-                      '../../attachments/example_note'
-      expect(subject.storage_path).to eq expected_path.to_s
+      expected_path = note_path + '../../attachments/example_note'
+      expect(subject.storage_path).to eq expected_path
     end
   end
 

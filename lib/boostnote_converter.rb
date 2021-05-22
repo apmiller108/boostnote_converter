@@ -13,12 +13,12 @@ module BoostnoteConverter
 
   # Usage: BoostnoteConverter.convert(source: 'spec/fixtures/notes/example_note.cson', target: :org, output_path: "/")
   def self.convert(source:, target:, **opts)
-    output_path = Pathname.new(opts[:output_path])
-    path = Pathname.new(source)
+    output_path = Pathname.new(opts.fetch(:output_path), Dir.pwd).realpath
+    path = Pathname.new(source).realpath
     target_class = TARGETS[target]
 
     paths = if path.directory?
-              Dir.entries(path)
+              Dir.entries(path).map { |e| (path + e).realpath }.reject(&:directory?)
             else
               [path]
             end

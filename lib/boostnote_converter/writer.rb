@@ -16,7 +16,7 @@ module BoostnoteConverter
     private
 
     def filename
-      "#{Pathname.new(output_path).realpath}/#{document.filename}"
+      "#{output_path}/#{document.filename}"
     end
   end
 end

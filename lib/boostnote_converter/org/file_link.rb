@@ -29,7 +29,7 @@ module BoostnoteConverter
       end
 
       def attachments_folder
-        Pathname.new(target_dir).split.last.to_s
+        target_dir.split.last.to_s
       end
 
       def copy_attachments

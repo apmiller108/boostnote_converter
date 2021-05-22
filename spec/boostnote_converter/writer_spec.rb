@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe BoostnoteConverter::Writer do
-  let(:output_path) { 'spec/test_conversions' }
+  let(:output_path) { Pathname.new('spec/test_conversions').realpath }
   let(:document_content) { 'Foo' }
   let(:target_document) do
     instance_double(

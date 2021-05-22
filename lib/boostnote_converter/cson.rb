@@ -21,8 +21,8 @@ module BoostnoteConverter
       trashed: /^isTrashed:\s(?<trashed>.+)$/
     }.freeze
 
-    def initialize(file)
-      @file = file
+    def initialize(path)
+      @file = File.open(path)
       @contents = file.read
     end
 
@@ -71,7 +71,7 @@ module BoostnoteConverter
     end
 
     def storage_path
-      (file_pathname + '../..' + 'attachments' + filename).to_s
+      file_pathname + '../..' + 'attachments' + filename
     end
 
     private
