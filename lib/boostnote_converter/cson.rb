@@ -43,7 +43,7 @@ module BoostnoteConverter
     end
 
     def tags
-      JSON(document_map[:tags])
+      JSON(document_map.fetch(:tags, []))
     end
 
     def content
@@ -51,7 +51,7 @@ module BoostnoteConverter
     end
 
     def lines_highlighted
-      JSON(document_map[:lines_highlighted])
+      JSON(document_map.fetch(:lines_highlighted, []))
     end
 
     def starred?
@@ -78,7 +78,8 @@ module BoostnoteConverter
 
     def document_map
       @document_map = PATTERNS.each_with_object({}) do |(key, pattern), hash|
-        hash[key] = contents.match(pattern)[key]
+        puts key
+        hash[key] = contents.match(pattern)&.send(:[], key)
       end
     end
 
