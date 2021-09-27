@@ -14,7 +14,7 @@ module BoostnoteConverter
       title: /^title:\s\"(?<title>.+)\"/,
       type: /^type:\s\"(?<type>.+)\"$/,
       folder_key: /^folder:\s\"(?<folder_key>.+)\"$/,
-      tags: /^tags:\s(?<tags>\[.[^\]]+\])$/m,
+      tags: /^tags:\s\[(?<tags>.[^\]]+)\]$/m,
       content: /^content:\s'''\n(?<content>.+)^'''/m,
       lines_highlighted: /^linesHighlighted:\s(?<lines_highlighted>\[.[^\]]+\])$/m,
       starred: /^isStarred:\s(?<starred>.+)$/,
@@ -43,7 +43,10 @@ module BoostnoteConverter
     end
 
     def tags
-      JSON(document_map[:tags] || '[]').uniq
+      document_map[:tags].split("\n")
+                         .map { |t| t.strip.gsub("\"", "") }
+                         .delete_if(&:empty?)
+                         .uniq
     end
 
     def content
