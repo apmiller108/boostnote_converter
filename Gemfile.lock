@@ -51,8 +51,5 @@ DEPENDENCIES
   rspec (~> 3.0)
   rubocop (~> 0.80)
 
-RUBY VERSION
-   ruby 3.0.0p0
-
 BUNDLED WITH
    2.2.3

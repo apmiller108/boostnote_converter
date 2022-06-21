@@ -7,7 +7,6 @@ services:
     build: .
     volumes:
       - ${PWD}:/app:cached
-      - ~/Google Drive/boostnotes:${PWD}/notes
     ports:
       - "12345:12345"
     environment:

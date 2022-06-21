@@ -1,3 +1,8 @@
+# docker build . -t boostnote_converter
+# docker run -it --rm -v "$PWD:/app" -w "/app"
+
+# For testing, use the conversions/ directory.
+
 FROM ruby:3.0.0
 
 RUN wget "https://github.com/jgm/pandoc/releases/download/2.12/pandoc-2.12-1-amd64.deb" \
