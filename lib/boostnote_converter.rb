@@ -17,7 +17,10 @@ module BoostnoteConverter
   TARGETS.each do |target_name, target_class|
     register_target(target_name, target_class)
   end
-  # BoostnoteConverter.convert(source: "/boostnotes/notes/{{CSON}}", target: :org, output_path: "/slip-box")
+  # Put notes to convernt in the conversions/note folder
+  # Open a bash prompt in a container
+  # bin/console
+  # BoostnoteConverter.convert(source: "conversions/notes/{{CSON}}", target: :org, output_path: "conversions")
 
   def self.convert(source:, target:, **opts)
     output_path = Pathname.new(opts.fetch(:output_path, Dir.pwd)).realpath

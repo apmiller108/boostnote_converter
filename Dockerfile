@@ -1,5 +1,5 @@
 # docker build . -t boostnote_converter
-# docker run -it --rm -v "$PWD:/app" -w "/app"
+# docker run -it --rm -v "$PWD:/app" -w "/app" boostnote_convertor
 
 # For testing, use the conversions/ directory.
 
