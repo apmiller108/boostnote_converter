@@ -17,7 +17,7 @@ module BoostnoteConverter
   TARGETS.each do |target_name, target_class|
     register_target(target_name, target_class)
   end
-  # Put notes to convernt in the conversions/note folder
+  # Put notes to convert in the conversions/notes folder
   # Open a bash prompt in a container
   # bin/console
   # BoostnoteConverter.convert(source: "conversions/notes/{{CSON}}", target: :org, output_path: "conversions")
